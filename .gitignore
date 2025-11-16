@@ -1,1 +1,86 @@
-/node-modules
+# ----------------------------
+# Node & Express Project Ignore
+# ----------------------------
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache
+.cache/
+.npm/
+.yarn/
+.pnpm-store/
+coverage/
+
+# Optional: Ignore TypeScript build files
+*.tsbuildinfo
+
+# Ignore compiled JS from TS (if using TypeScript)
+*.map
+*.d.ts
+
+# Ignore uploads/temp files
+uploads/
+public/uploads/
+storage/
+*.bak
+
+# Ignore MongoDB dump files
+dump/
+
+# Ignore lock files (optional)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore SSL certs (if any local dev)
+*.pem
+*.key
+*.crt
+
+# Swagger build
+swagger-output.json
+
+# Environment-specific config files
+config/local.js
+config/*.local.json
+
+# PM2 logs
+.pids
+*.pid
+*.seed
+*.pid.lock
+
+# Misc
+*.tgz
