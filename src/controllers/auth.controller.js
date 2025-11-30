@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service.js";
 export class AuthController {
   static async register(req, res) {
     try {
+      console.log("Registering user with data:", req.body);
       const result = await AuthService.register(req.body);
       res.status(201).json({ message: "User registered", user: result });
     } catch (err) {

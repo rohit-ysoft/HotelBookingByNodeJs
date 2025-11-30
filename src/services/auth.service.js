@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { user } from "../models/user.model.js";
+import  userSchema  from "../models/user.model.js";
 import { env } from "../config/env.config.js";
 import { ROLES } from "../constants/roles.js";
 
@@ -8,12 +8,12 @@ export class AuthService {
   static async register(data) {
     const { fullName, email, password, phone } = data;
 
-    const exists = await user.findOne({ email });
+    const exists = await userSchema.findOne({ email });
     if (exists) throw new Error("Email already registered");
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = await user.create({
+    const newUser = await userSchema.create({
       fullName,
       email,
       passwordHash,

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 //User
-const userSchema = new mongoose.Schema(
+     const  userSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true },
     email: { type: String, required: true, unique: true, lowercase: true },
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
 
 
 
-const userMediaSchema = new mongoose.Schema(
+  export const userMediaSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
@@ -31,9 +31,4 @@ const userMediaSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
-const user = mongoose.model("User",userSchema);
-const userMedia =mongoose.model("UserMedia", userMediaSchema);
-
-
-export { user, userMedia };
+export default userSchema;
