@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  userSchema  from "../models/user.model.js";
+import  User  from "../models/user.model.js";
 import { env } from "../config/env.config.js";
 import { ROLES } from "../constants/roles.js";
 
@@ -8,17 +8,18 @@ export class AuthService {
   static async register(data) {
     const { fullName, email, password, phone } = data;
 
-    const exists = await userSchema.findOne({ email });
+    // Validate unique email
+    const exists = await User.findOne({ email });
     if (exists) throw new Error("Email already registered");
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = await userSchema.create({
+    const newUser = await User.create({
       fullName,
       email,
       passwordHash,
       phone,
-      role: ROLES.USER, // default Agent
+      role: ROLES.USER,
     });
 
     return newUser;
@@ -27,7 +28,7 @@ export class AuthService {
   static async login(data) {
     const { email, password } = data;
 
-    const existingUser = await user.findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (!existingUser) throw new Error("Invalid credentials");
 
     const validPassword = await bcrypt.compare(
@@ -43,6 +44,6 @@ export class AuthService {
       { expiresIn: "7d" }
     );
 
-    return { user: existingUser, token };
+    return { token };
   }
 }
