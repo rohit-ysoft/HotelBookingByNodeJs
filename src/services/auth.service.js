@@ -6,8 +6,8 @@ import { ROLES } from "../constants/roles.js";
 
 export class AuthService {
   static async register(data) {
+    
     const { fullName, email, password, phone } = data;
-
     // Validate unique email
     const exists = await User.findOne({ email });
     if (exists) throw new Error("Email already registered");
@@ -25,25 +25,46 @@ export class AuthService {
     return newUser;
   }
 
-  static async login(data) {
-    const { email, password } = data;
+static async login(data) {
+  const { email, password } = data;
 
-    const existingUser = await User.findOne({ email });
-    if (!existingUser) throw new Error("Invalid credentials");
+  // Default flag
+  let isSuccess = false;
 
-    const validPassword = await bcrypt.compare(
-      password,
-      existingUser.passwordHash
-    );
-
-    if (!validPassword) throw new Error("Invalid credentials");
-
-    const token = jwt.sign(
-      { id: existingUser._id, role: existingUser.role, email },
-      env.jwtSecret,
-      { expiresIn: "7d" }
-    );
-
-    return { token };
+  // Check user exists
+  const existingUser = await User.findOne({ email });
+  if (!existingUser) {
+    throw new Error("Invalid credentials");
   }
+
+  // Validate password
+  const validPassword = await bcrypt.compare(
+    password,
+    existingUser.passwordHash
+  );
+
+  if (!validPassword) {
+    throw new Error("Invalid credentials");
+  }
+
+  // Create JWT token
+  const token = jwt.sign(
+    {
+      id: existingUser._id,
+      role: existingUser.role,
+      email: existingUser.email
+    },
+    env.jwtSecret,
+    { expiresIn: "7d" }
+  );
+
+  // Success
+  isSuccess = true;
+
+  return {
+    isSuccess,
+    token
+  };
+}
+
 }

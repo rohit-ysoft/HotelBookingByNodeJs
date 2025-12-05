@@ -12,7 +12,7 @@ const hotelSchema = new mongoose.Schema(
     rating: Number,
     pricePerNight: Number,
     currency: { type: String, default: "USD" },
-
+       
     // ⭐ Image Upload: store detailed info
     images: [
       {
