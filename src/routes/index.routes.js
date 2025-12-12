@@ -3,6 +3,7 @@ import authRoutes from "./auth.routes.js";
 import hotelroutes from "./hotel.routes.js";
 import quotationRoutes from "./quotation.routes.js";
 import quotationHotelRoutes from "./quotationHotel.routes.js";
+import hotelFacilityRoutes from "../routes/hotelFacility.routes.js"
 
 
 const router = Router();
@@ -12,6 +13,6 @@ router.use("/auth", authRoutes);
 router.use("/hotel", hotelroutes);
 router.use("/quotation", quotationRoutes);
 router.use("/quotation-hotel", quotationHotelRoutes);
-
+router.use("/hotelFacility", hotelFacilityRoutes);
 
 export default router;

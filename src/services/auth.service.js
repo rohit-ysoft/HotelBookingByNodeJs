@@ -30,6 +30,7 @@ static async login(data) {
 
   // Default flag
   let isSuccess = false;
+  let role = null;
 
   // Check user exists
   const existingUser = await User.findOne({ email });
@@ -60,9 +61,11 @@ static async login(data) {
 
   // Success
   isSuccess = true;
+  role = existingUser.role
 
   return {
     isSuccess,
+    role,
     token
   };
 }

@@ -33,14 +33,14 @@ async create(req, res) {
     const hotel = await HotelService.create(hotelData);
 
     return res.status(201).json({
-      success: true,
+      isSuccess: true,
       message: "Hotel created successfully",
       data: hotel
     });
 
   } catch (err) {
     return res.status(500).json({
-      success: false,
+      isSuccess: false,
       message: err.message
     });
   }
@@ -60,10 +60,10 @@ async create(req, res) {
     console.log("GetById called with ID:", req.query.id); // Debugging line
     try {
       const hotel = await HotelService.getById(req.query.id);
-      if (!hotel) return res.status(404).json({ success: false, message: "Hotel not found" });
-      return res.json({ success: true, data: hotel });
+      if (!hotel) return res.status(404).json({ isSuccess: false, message: "Hotel not found" });
+      return res.json({ isSuccess: true, data: hotel });
     } catch (err) {
-      return res.status(500).json({ success: false, message: err.message });
+      return res.status(500).json({ isSuccess: false, message: err.message });
     }
   },
 
