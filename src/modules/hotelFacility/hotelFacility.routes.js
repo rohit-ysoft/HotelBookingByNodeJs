@@ -1,5 +1,6 @@
 // routes/hotelFacility.routes.js
 import express from "express";
+import { uploadHotelFacility } from "../../middleware/upload.middleware.js";
 import {
   addFacility,
   getHotelFacilities,
@@ -10,8 +11,18 @@ import {
 
 const router = express.Router();
 
+
+// router.post(
+//   "/register",
+//   uploadHotelFacility.array("images", 10),  // ⭐ VERY IMPORTANT
+//   HotelController.create
+// );
 // Create Facility
-router.post("/register", addFacility);
+router.post(
+  "/register", 
+  uploadHotelFacility.array("images", 10),
+ addFacility
+);
 
 // Get all facilities of one hotel
 router.get("/hotel/:hotelId", getHotelFacilities);

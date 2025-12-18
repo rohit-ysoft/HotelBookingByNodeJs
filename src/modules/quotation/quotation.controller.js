@@ -1,4 +1,4 @@
-import QuotationService from "../services/quotation.service.js";
+import QuotationService from "../services/quotationService.js";
 
 export const QuotationController = {
 

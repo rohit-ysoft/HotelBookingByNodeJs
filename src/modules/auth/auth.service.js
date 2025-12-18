@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  User  from "../models/user.model.js";
+import  User  from "../modules/auth/user.model.js";
 import { env } from "../config/env.config.js";
 import { ROLES } from "../constants/roles.js";
 
@@ -31,6 +31,8 @@ static async login(data) {
   // Default flag
   let isSuccess = false;
   let role = null;
+  let user = null;
+
 
   // Check user exists
   const existingUser = await User.findOne({ email });
@@ -61,12 +63,14 @@ static async login(data) {
 
   // Success
   isSuccess = true;
-  role = existingUser.role
+  role = existingUser.role;
+  user=existingUser
 
   return {
     isSuccess,
     role,
-    token
+    token,
+    user
   };
 }
 

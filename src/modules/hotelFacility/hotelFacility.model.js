@@ -30,11 +30,15 @@ const hotelFacilitySchema = new mongoose.Schema(
     // If paid, store price
     price: { type: Number, default: 0 },
 
-    // ⭐ Store Multiple Images
+    // ⭐ Image Upload: store detailed info
     images: [
       {
-        type: String, // URL or file path of image
-      },
+        url: { type: String },        // Cloudinary or local file URL
+        filename: { type: String },   // original filename
+        size: { type: Number },       // file size in KB/MB
+        mimetype: { type: String },   // image/jpeg, image/png etc.
+        uploadedAt: { type: Date, default: Date.now }
+      }
     ],
 
     // Visibility

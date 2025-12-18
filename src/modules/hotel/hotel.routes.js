@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { HotelController } from "../controllers/hotel.controller.js";
-import { upload } from "../middleware/upload.js";
+import { uploadHotel } from "../../middleware/upload.middleware.js";
 const router = Router();
 
 
 router.post(
   "/register",
-  upload.array("images", 10),  // ⭐ VERY IMPORTANT
+  uploadHotel.array("images", 10),  // ⭐ VERY IMPORTANT
   HotelController.create
 );
 // router.post("/register", HotelController.create);

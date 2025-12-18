@@ -5,15 +5,38 @@ import {
   getFacilityById,
   updateFacility,
   deleteFacility
-} from "../services/hotelFacility.service.js";
+} from "../services/hotelFacilityService.js";
 
 export const addFacility = async (req, res) => {
   try {
-    const facility = await createFacility(req.body);
-    console.log("THis is hotel facility registration data =>",facility);
+    console.log("THis is hotel facility registration data =>", req.body);
+
+    // Convert uploaded images to schema format
+    const images = (req.files || []).map(file => ({
+      url: "/uploads/hotels/hotelFacility/" + file.filename,
+      filename: file.originalname,
+      size: file.size,
+      mimetype: file.mimetype,
+      uploadedAt: new Date()
+    }));
+
+    const hotelFacilityData = {
+      hotelId: req.body.hotelId,            // REQUIRED
+      name: req.body.name,                  // REQUIRED
+      description: req.body.description,    // optional
+      category: req.body.category,          // POPULAR / ROOM / SAFETY / etc
+      isPaid: req.body.isPaid === "true" || req.body.isPaid === true,
+      price: req.body.price || 0,
+      icon: req.file ? req.file.path : null, // single icon image
+      images: images || [],                 // multiple images paths
+      isActive: req.body.isActive ?? true,
+    };
+
+    const facility = await createFacility(hotelFacilityData);
+    console.log("THis is hotel facility registration data =>", facility);
     res.status(201).json({ isSuccess: true, data: facility });
   } catch (error) {
-    res.status(500).json({ isSuccess: false, message: error.message });
+    console.log({ isSuccess: false, message: error.message });
   }
 };
 

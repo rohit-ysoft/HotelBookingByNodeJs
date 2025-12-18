@@ -2,6 +2,7 @@
 import HotelFacility from "../models/hotelFacility.model.js";
 
 export const createFacility = async (data) => {
+  console.log("This is hotel Facility service data =>",data);
   return await HotelFacility.create(data);
 };
 
