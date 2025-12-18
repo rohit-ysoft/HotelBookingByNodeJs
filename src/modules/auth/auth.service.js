@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  User  from "../modules/auth/user.model.js";
-import { env } from "../config/env.config.js";
-import { ROLES } from "../constants/roles.js";
+import  User  from "./auth.model.js";
+import { env } from "../../config/env.config.js";
+import { ROLES } from "../../constants/roles.js";
 
 export class AuthService {
   static async register(data) {

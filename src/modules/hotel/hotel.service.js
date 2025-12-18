@@ -1,4 +1,4 @@
-import Hotel from "../models/hotelModel.js";
+import Hotel from "./hotel.model.js";
 
 export default class HotelService {
 

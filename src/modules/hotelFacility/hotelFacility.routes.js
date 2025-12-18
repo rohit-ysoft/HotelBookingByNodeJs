@@ -7,7 +7,7 @@ import {
   getSingleFacility,
   editFacility,
   removeFacility
-} from "../controllers/hotelFacility.controller.js";
+} from "./hotelFacility.controller.js";
 
 const router = express.Router();
 

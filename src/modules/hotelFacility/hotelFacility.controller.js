@@ -5,7 +5,7 @@ import {
   getFacilityById,
   updateFacility,
   deleteFacility
-} from "../services/hotelFacilityService.js";
+} from "./hotelFacility.service.js";
 
 export const addFacility = async (req, res) => {
   try {

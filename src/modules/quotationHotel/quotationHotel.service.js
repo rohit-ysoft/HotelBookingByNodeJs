@@ -1,5 +1,5 @@
-import QuotationHotel from "../models/quotationHotel.model.js";
-import Quotation from "../models/quotation.model.js";
+import QuotationHotel from "./quotationHotel.model.js";
+import Quotation from "../quotation/quotation.model.js";
 
 export default class QuotationHotelService {
 

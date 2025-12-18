@@ -1,5 +1,5 @@
 import { Router } from "express";
-import authRoutes from "./auth.routes.js";
+import authRoutes from "../modules/auth/auth.routes.js";
 import hotelroutes from "../modules/hotel/hotel.routes.js";
 import quotationRoutes from "../modules/quotation/quotation.routes.js";
 import quotationHotelRoutes from "../modules/quotationHotel/quotationHotel.routes.js";

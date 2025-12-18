@@ -1,4 +1,4 @@
-import HotelService from "../services/hotelService.js";
+import HotelService from "./hotel.service.js";
 
 export const HotelController = {
 

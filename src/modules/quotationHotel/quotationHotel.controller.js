@@ -1,4 +1,4 @@
-import QuotationHotelService from "../services/quotationHotelService.js";
+import QuotationHotelService from "./quotationHotel.service.js";
 
 export const QuotationHotelController = {
 

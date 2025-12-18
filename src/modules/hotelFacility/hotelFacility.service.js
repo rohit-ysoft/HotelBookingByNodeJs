@@ -1,5 +1,5 @@
 // services/hotelFacility.service.js
-import HotelFacility from "../models/hotelFacility.model.js";
+import HotelFacility from "./hotelFacility.model.js";
 
 export const createFacility = async (data) => {
   console.log("This is hotel Facility service data =>",data);
